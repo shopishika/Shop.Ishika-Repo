@@ -58,8 +58,8 @@
                 <div class="w-full md:w-1/2">
                     <!-- INSTRUCTIONS: Yahan humne local images ka path use kiya hai -->
                     <div class="flex overflow-x-auto md:grid md:grid-cols-2 md:overflow-visible gap-2 md:gap-4 snap-x snap-mandatory hide-scrollbar">
-                        <img src="./images/kurti-front.jpg" alt="Kurti Front" class="w-full h-[450px] md:h-[500px] object-cover snap-center flex-shrink-0 md:rounded-xl">
-                        <img src="./images/kurti-back.jpg" alt="Kurti Back" class="w-full h-[450px] md:h-[500px] object-cover snap-center flex-shrink-0 md:rounded-xl">
+                        <img src="./images/kurti-front.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1605763240000-7e93b172d754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'" alt="Kurti Front" class="w-full h-[450px] md:h-[500px] object-cover snap-center flex-shrink-0 md:rounded-xl">
+                        <img src="./images/kurti-back.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'" alt="Kurti Back" class="w-full h-[450px] md:h-[500px] object-cover snap-center flex-shrink-0 md:rounded-xl">
                     </div>
                     <div class="text-center text-xs text-gray-400 mt-2 md:hidden">Swipe dekhne ke liye &rarr;</div>
                 </div>
@@ -230,7 +230,7 @@
 
             <!-- Product Summary Card -->
             <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 flex flex-col sm:flex-row gap-5 mb-6">
-                <img src="https://images.unsplash.com/photo-1605763240000-7e93b172d754?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Product" class="w-full sm:w-28 h-40 sm:h-32 object-cover rounded-lg shadow-sm">
+                <img src="./images/kurti-front.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1605763240000-7e93b172d754?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'" alt="Product" class="w-full sm:w-28 h-40 sm:h-32 object-cover rounded-lg shadow-sm">
                 <div class="flex-1 flex flex-col justify-center">
                     <h3 class="text-base font-semibold text-gray-900 line-clamp-2 mb-2">Multicolour Trendy Women’s Kurti – Combo of 2</h3>
                     <div class="flex flex-wrap gap-4 text-sm text-gray-600">
@@ -393,7 +393,7 @@
                 <!-- QR Placeholder -->
                 <div class="w-56 h-56 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl flex items-center justify-center mb-5 p-3 relative shadow-inner">
                     <!-- INSTRUCTION: Local QR code image ka path yahan hai -->
-                    <img src="./images/my-upi-qr.jpg" alt="UPI QR" class="w-full h-full object-contain">
+                    <img src="./images/my-upi-qr.jpg" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg'" alt="UPI QR" class="w-full h-full object-contain">
                 </div>
 
                 <div class="text-2xl font-bold text-gray-900 mb-6 bg-rose-50 px-6 py-2 rounded-full border border-rose-100">Total: ₹<span id="upiAmountShow">350</span></div>
@@ -431,7 +431,7 @@
     <!-- ============================================== -->
     <script>
         // --- 1. CONFIGURATION ---
-        const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE"; 
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyzCpisq504_7y1z0uHL5GwYc_Lm-dYDYQuOm02JKKgyeBKb2PD_MXqwo9Yc7cMhJh6-Q/exec"; 
         const PRODUCT_PRICE = 350;
         const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', '4XL', '5XL'];
         
