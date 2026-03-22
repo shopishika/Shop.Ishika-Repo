@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop.Ishika | Multicolour Trendy Women’s Kurti</title>
+    <!-- Tailwind CSS CDN for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Material UI feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
+        /* Smooth scrolling aur hide scrollbar for clean look */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Custom Toast Animation */
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .toast-animate { animation: slideUp 0.3s ease-out forwards; }
+    </style>
+</head>
+<body class="text-gray-800 antialiased relative flex flex-col min-h-screen">
+
+    <!-- Toast Notification (Custom Alert) -->
+    <div id="toast" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-2xl z-50 hidden text-sm font-medium transition-all duration-300 whitespace-nowrap">
+        Message here
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-40 w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo & Cart Icon -->
+            <div class="flex items-center gap-2 text-rose-600 font-bold text-xl md:text-2xl tracking-tight cursor-pointer" onclick="location.reload()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                </svg>
+                Shop.Ishika
+            </div>
+            <!-- Contact Us Button -->
+            <button onclick="toggleModal('contactModal')" class="text-sm md:text-base font-medium text-gray-700 hover:text-white hover:bg-rose-600 border border-gray-300 hover:border-rose-600 px-4 py-2 rounded-full transition-all duration-300">
+                Contact Us
+            </button>
+        </div>
+    </header>
+
+    <!-- Main App Container (Responsive for both Mobile & Desktop) -->
+    <main class="flex-grow w-full pb-20 md:pb-10 relative" id="app-container">
+        
+        <!-- ============================================== -->
+        <!-- SECTION 1: PRODUCT PAGE -->
+        <!-- ============================================== -->
+        <section id="section-product" class="block max-w-7xl mx-auto px-0 md:px-6 lg:px-8 pt-0 md:pt-8">
+            <div class="flex flex-col md:flex-row gap-0 md:gap-10 lg:gap-16 bg-white md:p-6 lg:p-8 md:rounded-2xl md:shadow-sm md:border md:border-gray-100">
+                
+                <!-- Left: Product Images Gallery -->
+                <div class="w-full md:w-1/2">
+                    <!-- INSTRUCTIONS: Yahan humne local images ka path use kiya hai -->
+                    <div class="flex overflow-x-auto md:grid md:grid-cols-2 md:overflow-visible gap-2 md:gap-4 snap-x snap-mandatory hide-scrollbar">
+                        <img src="./images/kurti-front.jpg" alt="Kurti Front" class="w-full h-[450px] md:h-[500px] object-cover snap-center flex-shrink-0 md:rounded-xl">
+                        <img src="./images/kurti-back.jpg" alt="Kurti Back" class="w-full h-[450px] md:h-[500px] object-cover snap-center flex-shrink-0 md:rounded-xl">
+                    </div>
+                    <div class="text-center text-xs text-gray-400 mt-2 md:hidden">Swipe dekhne ke liye &rarr;</div>
+                </div>
+
+                <!-- Right: Product Info -->
+                <div class="w-full md:w-1/2 p-5 md:p-0 flex flex-col">
+                    <h1 class="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 leading-tight">Multicolour Trendy Women’s Kurti – Combo of 2</h1>
+                    
+                    <div class="flex items-center gap-3 mt-3 md:mt-4">
+                        <span class="text-3xl font-bold text-gray-900">₹350</span>
+                        <span class="bg-green-100 text-green-700 text-xs md:text-sm font-bold px-3 py-1 rounded-full">Free Delivery</span>
+                    </div>
+
+                    <div class="flex items-center gap-2 mt-3">
+                        <span class="bg-green-600 text-white text-xs md:text-sm font-bold px-2 py-1 rounded flex items-center gap-1 shadow-sm">
+                            4.5 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3 h-3 md:w-4 md:h-4"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" /></svg>
+                        </span>
+                        <span class="text-sm text-gray-500 font-medium">(1,245 Ratings)</span>
+                    </div>
+
+                    <!-- Trust Badges -->
+                    <div class="grid grid-cols-3 gap-2 mt-6 bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+                        <div class="flex flex-col items-center gap-1.5 text-center">
+                            <div class="bg-rose-100 p-2 rounded-full"><svg class="w-6 h-6 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+                            <span class="text-[11px] md:text-xs font-semibold text-gray-700">Lowest Price</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-1.5 text-center border-x border-rose-100/50">
+                            <div class="bg-rose-100 p-2 rounded-full"><svg class="w-6 h-6 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div>
+                            <span class="text-[11px] md:text-xs font-semibold text-gray-700">COD Available</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-1.5 text-center">
+                            <div class="bg-rose-100 p-2 rounded-full"><svg class="w-6 h-6 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg></div>
+                            <span class="text-[11px] md:text-xs font-semibold text-gray-700">Quality Assured</span>
+                        </div>
+                    </div>
+
+                    <!-- Size Selection -->
+                    <div class="mt-8">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-base font-semibold text-gray-900">Select Size</h3>
+                            <span class="text-sm text-rose-600 font-semibold cursor-pointer hover:underline">Size Chart</span>
+                        </div>
+                        <div class="flex flex-wrap gap-3" id="size-container">
+                            <!-- JS se sizes aayenge yahan -->
+                        </div>
+                    </div>
+
+                    <!-- Buy Button (Sticky on mobile, Static on Desktop) -->
+                    <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-3 z-30 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] md:static md:shadow-none md:border-none md:bg-transparent md:p-0 md:mt-8">
+                        <button onclick="handleBuyNow()" class="w-full bg-rose-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-rose-700 active:bg-rose-800 transition-all duration-300 text-lg flex justify-center items-center gap-2 transform md:hover:-translate-y-1">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                            Buy Now
+                        </button>
+                    </div>
+
+                    <!-- Product Description -->
+                    <div class="mt-8 pt-6 border-t border-gray-100">
+                        <h3 class="text-base font-semibold text-gray-900 mb-4">Key Features</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 text-sm text-gray-700">
+                            <div class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 mr-2 flex-shrink-0"></span> <p><span class="font-semibold text-gray-900">Fabric:</span> Crepe</p></div>
+                            <div class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 mr-2 flex-shrink-0"></span> <p><span class="font-semibold text-gray-900">Fit/Shape:</span> A-line</p></div>
+                            <div class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 mr-2 flex-shrink-0"></span> <p><span class="font-semibold text-gray-900">Length:</span> Calf-length</p></div>
+                            <div class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 mr-2 flex-shrink-0"></span> <p><span class="font-semibold text-gray-900">Neck:</span> Round</p></div>
+                            <div class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 mr-2 flex-shrink-0"></span> <p><span class="font-semibold text-gray-900">Sleeve:</span> Sleeveless, Regular</p></div>
+                            <div class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 mr-2 flex-shrink-0"></span> <p><span class="font-semibold text-gray-900">Pattern:</span> Abstract Print</p></div>
+                            <div class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 mr-2 flex-shrink-0"></span> <p><span class="font-semibold text-gray-900">Occasion:</span> Daily wear</p></div>
+                            <div class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 mr-2 flex-shrink-0"></span> <p><span class="font-semibold text-gray-900">Stitch Type:</span> Stitched</p></div>
+                            <div class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 mr-2 flex-shrink-0"></span> <p><span class="font-semibold text-gray-900">Country of Origin:</span> India</p></div>
+                            <div class="flex items-start"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 mr-2 flex-shrink-0"></span> <p><span class="font-semibold text-gray-900">Product Code:</span> ISHI496160521KA</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SECTION 2: ADDRESS & QUANTITY FORM -->
+        <!-- ============================================== -->
+        <section id="section-address" class="hidden max-w-2xl mx-auto md:mt-8 p-4 md:p-8 bg-white md:rounded-2xl md:shadow-md border-t md:border border-gray-100">
+            <div class="flex items-center gap-3 mb-6 cursor-pointer hover:text-rose-600 transition-colors inline-flex" onclick="goToStep('section-product')">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                <h2 class="text-xl font-bold text-gray-900">Delivery Address</h2>
+            </div>
+            
+            <form id="addressForm" class="space-y-5">
+                <!-- Quantity -->
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">Quantity Required *</label>
+                    <input type="number" id="orderQty" min="1" value="1" required class="w-full md:w-1/3 border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none transition-all text-lg font-medium">
+                </div>
+
+                <!-- Contact Details -->
+                <div class="pt-4">
+                    <h3 class="text-base font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Contact Details</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Full Name *</label>
+                            <input type="text" id="custName" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-500 outline-none transition-all">
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1.5">Contact Number 1 *</label>
+                                <input type="tel" id="custPhone1" required pattern="[0-9]{10}" placeholder="10 digit mobile number" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-500 outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1.5">Contact Number 2 (Optional)</label>
+                                <input type="tel" id="custPhone2" pattern="[0-9]{10}" placeholder="Alternative number" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-500 outline-none transition-all">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address -->
+                <div class="pt-4">
+                    <h3 class="text-base font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Full Address</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">House No. / Building Name *</label>
+                            <input type="text" id="custHouse" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-500 outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Road Name, Area, Colony *</label>
+                            <input type="text" id="custArea" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-500 outline-none transition-all">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1.5">Pincode *</label>
+                                <input type="tel" id="custPin" required pattern="[0-9]{6}" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-500 outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1.5">City *</label>
+                                <input type="text" id="custCity" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-500 outline-none transition-all">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1.5">State *</label>
+                                <input type="text" id="custState" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-500 outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1.5">Nearby Landmark *</label>
+                                <input type="text" id="custLandmark" required placeholder="e.g. Near Apollo Hospital" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-500 outline-none transition-all">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Note to Seller (Optional)</label>
+                            <textarea id="custNote" rows="2" placeholder="Any special instructions for delivery" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-rose-500 outline-none transition-all"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <button onclick="saveAddressAndContinue()" class="w-full bg-rose-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-rose-700 active:bg-rose-800 transition-colors text-lg">
+                    Save Address & Continue
+                </button>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SECTION 3: ORDER SUMMARY -->
+        <!-- ============================================== -->
+        <section id="section-summary" class="hidden max-w-2xl mx-auto md:mt-8 p-4 md:p-8 bg-white md:rounded-2xl md:shadow-md border-t md:border border-gray-100">
+            <div class="flex items-center gap-3 mb-6 cursor-pointer hover:text-rose-600 transition-colors inline-flex" onclick="goToStep('section-address')">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                <h2 class="text-xl font-bold text-gray-900">Order Summary</h2>
+            </div>
+
+            <!-- Product Summary Card -->
+            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 flex flex-col sm:flex-row gap-5 mb-6">
+                <img src="https://images.unsplash.com/photo-1605763240000-7e93b172d754?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Product" class="w-full sm:w-28 h-40 sm:h-32 object-cover rounded-lg shadow-sm">
+                <div class="flex-1 flex flex-col justify-center">
+                    <h3 class="text-base font-semibold text-gray-900 line-clamp-2 mb-2">Multicolour Trendy Women’s Kurti – Combo of 2</h3>
+                    <div class="flex flex-wrap gap-4 text-sm text-gray-600">
+                        <p>Size: <span id="summarySize" class="font-bold text-gray-900"></span></p>
+                        <p>Qty: <span id="summaryQty" class="font-bold text-gray-900"></span></p>
+                    </div>
+                    <p class="text-lg font-bold text-gray-900 mt-3 text-rose-600">₹<span id="summaryItemPrice">350</span></p>
+                </div>
+            </div>
+
+            <!-- Address Card -->
+            <div class="bg-white p-5 rounded-xl border border-gray-200 mb-6 relative shadow-sm">
+                <h3 class="text-base font-bold text-gray-900 mb-3 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Delivery Address
+                </h3>
+                <p id="summaryAddress" class="text-sm text-gray-600 leading-relaxed"></p>
+                <button onclick="goToStep('section-address')" class="absolute top-5 right-5 text-rose-600 text-sm font-bold hover:underline">CHANGE</button>
+            </div>
+
+            <!-- Price Details -->
+            <div class="bg-white p-5 rounded-xl border border-gray-200 mb-8 shadow-sm">
+                <h3 class="text-base font-bold text-gray-900 mb-4 border-b border-gray-100 pb-3">Price Details</h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between text-sm text-gray-600">
+                        <span>Product Price</span>
+                        <span class="font-medium">₹<span id="calcTotal">350</span></span>
+                    </div>
+                    <div class="flex justify-between text-sm text-gray-600">
+                        <span>Delivery Charges</span>
+                        <span class="text-green-600 font-bold tracking-wide">FREE</span>
+                    </div>
+                </div>
+                <div class="flex justify-between text-lg font-bold text-gray-900 mt-4 border-t border-gray-100 pt-4">
+                    <span>Order Total</span>
+                    <span class="text-rose-600">₹<span id="finalTotal">350</span></span>
+                </div>
+            </div>
+
+            <div class="pt-2">
+                <button onclick="goToStep('section-payment')" class="w-full bg-rose-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-rose-700 transition-colors text-lg">
+                    Continue to Payment
+                </button>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SECTION 4: PAYMENT METHOD -->
+        <!-- ============================================== -->
+        <section id="section-payment" class="hidden max-w-2xl mx-auto md:mt-8 p-4 md:p-8 bg-white md:rounded-2xl md:shadow-md border-t md:border border-gray-100">
+            <div class="flex items-center gap-3 mb-6 cursor-pointer hover:text-rose-600 transition-colors inline-flex" onclick="goToStep('section-summary')">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                <h2 class="text-xl font-bold text-gray-900">Select Payment Method</h2>
+            </div>
+
+            <div class="space-y-4 mb-8">
+                <!-- UPI Option -->
+                <label class="flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-rose-400 hover:bg-rose-50/50 transition-all has-[:checked]:border-rose-500 has-[:checked]:bg-rose-50">
+                    <div class="flex items-start md:items-center gap-4">
+                        <input type="radio" name="payment" value="UPI" class="w-5 h-5 mt-1 md:mt-0 text-rose-600 focus:ring-rose-500 cursor-pointer">
+                        <div class="flex flex-col">
+                            <span class="font-bold text-gray-900 text-base md:text-lg">UPI (Google Pay, PhonePe, Paytm)</span>
+                            <span class="text-xs md:text-sm text-green-600 font-bold mt-1">Extra 5% Off applied later!</span>
+                        </div>
+                    </div>
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/free-upi-2085056-1747946.png" class="h-8 md:h-10 object-contain hidden sm:block" alt="UPI">
+                </label>
+
+                <!-- COD Option -->
+                <label class="flex items-center justify-between p-5 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-rose-400 hover:bg-rose-50/50 transition-all has-[:checked]:border-rose-500 has-[:checked]:bg-rose-50">
+                    <div class="flex items-center gap-4">
+                        <input type="radio" name="payment" value="COD" checked class="w-5 h-5 text-rose-600 focus:ring-rose-500 cursor-pointer">
+                        <span class="font-bold text-gray-900 text-base md:text-lg">Cash on Delivery (COD)</span>
+                    </div>
+                    <svg class="w-8 h-8 md:w-10 md:h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                </label>
+            </div>
+
+            <div class="pt-2">
+                <button onclick="processPayment()" id="placeOrderBtn" class="w-full bg-rose-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-rose-700 transition-colors text-lg flex justify-center items-center gap-2">
+                    Place Order Now
+                </button>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- SECTION 5: SUCCESS PAGE -->
+        <!-- ============================================== -->
+        <section id="section-success" class="hidden p-6 flex flex-col items-center justify-center min-h-[60vh] text-center max-w-2xl mx-auto md:mt-10 bg-white md:rounded-2xl md:shadow-lg border border-green-100">
+            <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6 shadow-inner">
+                <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900 mb-3">Order Placed Successfully!</h2>
+            <p id="successMessage" class="text-gray-600 text-lg leading-relaxed mb-10 max-w-md">
+                Thank you for shopping with Us. Soon you'll receive order details on your phone!
+            </p>
+            <button onclick="location.reload()" class="border-2 border-rose-600 text-rose-600 font-bold px-10 py-3 rounded-xl hover:bg-rose-50 transition-colors text-lg">
+                Continue Shopping
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-sm text-gray-500 mt-auto bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            &copy; 2024 Shop.Ishika. All rights reserved. <br class="md:hidden"> 
+            <span class="hidden md:inline"> | </span> 
+            <a href="#" class="hover:text-rose-600">Privacy Policy</a> • <a href="#" class="hover:text-rose-600">Terms of Service</a>
+        </div>
+    </footer>
+
+    <!-- ============================================== -->
+    <!-- MODALS (Popups) -->
+    <!-- ============================================== -->
+
+    <!-- Contact Us Modal -->
+    <div id="contactModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl transform transition-all overflow-hidden relative">
+            <div class="bg-rose-50 p-5 border-b border-rose-100 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-gray-900">Get in Touch</h3>
+                <button onclick="toggleModal('contactModal')" class="text-gray-400 hover:text-gray-800 bg-white p-1 rounded-full hover:bg-gray-100 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <form id="contactForm" onsubmit="submitContactForm(event)" class="p-6 space-y-5">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1.5">Name</label>
+                    <input type="text" id="contactName" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1.5">Email / Phone</label>
+                    <input type="text" id="contactInfo" required class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1.5">Message</label>
+                    <textarea id="contactMessage" required rows="4" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none transition-all resize-none"></textarea>
+                </div>
+                <button type="submit" id="contactBtn" class="w-full bg-gray-900 text-white font-bold py-3.5 rounded-xl mt-2 hover:bg-black shadow-lg transition-transform active:scale-95">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- UPI Payment Modal -->
+    <div id="upiModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center sm:p-4 transition-opacity">
+        <div class="bg-white w-full max-w-md sm:rounded-2xl rounded-t-3xl shadow-2xl transform transition-all overflow-y-auto max-h-[90vh]">
+            <div class="p-5 border-b flex justify-between items-center sticky top-0 bg-white z-10">
+                <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/free-upi-2085056-1747946.png" class="h-6" alt="UPI"> Pay via UPI
+                </h3>
+                <button onclick="toggleModal('upiModal')" class="text-gray-400 hover:text-gray-800 bg-gray-50 p-1 rounded-full hover:bg-gray-100 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="p-6 flex flex-col items-center">
+                <p class="text-sm text-gray-600 text-center mb-5">Scan QR code using any UPI app or click 'Pay Now' if on mobile.</p>
+                
+                <!-- QR Placeholder -->
+                <div class="w-56 h-56 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl flex items-center justify-center mb-5 p-3 relative shadow-inner">
+                    <!-- INSTRUCTION: Local QR code image ka path yahan hai -->
+                    <img src="./images/my-upi-qr.jpg" alt="UPI QR" class="w-full h-full object-contain">
+                </div>
+
+                <div class="text-2xl font-bold text-gray-900 mb-6 bg-rose-50 px-6 py-2 rounded-full border border-rose-100">Total: ₹<span id="upiAmountShow">350</span></div>
+
+                <!-- Deep Link Button for Mobile -->
+                <!-- INSTRUCTION: Yahan `pa=` ke aage apni UPI ID daalein (e.g., yourname@oksbi) -->
+                <a href="#" id="upiDeepLink" class="w-full bg-[#6528e0] text-white font-bold py-3.5 rounded-xl text-center shadow-lg mb-6 hover:bg-[#521dc4] transition-colors md:hidden">
+                    Pay Now via App
+                </a>
+
+                <div class="w-full border-t border-gray-200 pt-6">
+                    <h4 class="text-sm font-bold text-gray-800 mb-4 bg-gray-100 inline-block px-3 py-1 rounded-md">Step 2: After Payment</h4>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-rose-50/50 p-4 rounded-xl border border-rose-100">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Transaction ID / UTR No. *</label>
+                            <input type="text" id="upiTxnId" placeholder="e.g. 301234567890 (12 digits)" class="w-full border border-gray-300 rounded-lg px-4 py-3 text-base focus:ring-2 focus:ring-rose-500 outline-none transition-all mb-3">
+                            
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Upload Screenshot (Optional)</label>
+                            <input type="file" accept="image/*" class="w-full text-sm text-gray-600 file:mr-4 file:py-2.5 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-rose-100 file:text-rose-700 hover:file:bg-rose-200 file:cursor-pointer">
+                        </div>
+                        
+                        <button onclick="submitUpiOrder()" class="w-full bg-green-600 text-white font-bold py-4 rounded-xl mt-4 shadow-lg hover:bg-green-700 transition-colors text-lg">
+                            Verify & Complete Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================== -->
+    <!-- JAVASCRIPT LOGIC -->
+    <!-- ============================================== -->
+    <script>
+        // --- 1. CONFIGURATION ---
+        const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE"; 
+        const PRODUCT_PRICE = 350;
+        const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', '4XL', '5XL'];
+        
+        // --- 2. STATE VARIABLES ---
+        let selectedSize = '';
+        let orderDetails = {};
+
+        // --- 3. INITIALIZATION ---
+        window.onload = () => {
+            renderSizes();
+        };
+
+        // Render Sizes dynamically
+        function renderSizes() {
+            const container = document.getElementById('size-container');
+            container.innerHTML = '';
+            SIZES.forEach(size => {
+                const btn = document.createElement('button');
+                btn.innerText = size;
+                btn.className = `size-btn border-2 text-base md:text-sm font-bold py-2 px-5 md:px-4 rounded-lg transition-all ${selectedSize === size ? 'border-rose-600 bg-rose-50 text-rose-700 shadow-md transform scale-105' : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'}`;
+                btn.onclick = () => {
+                    selectedSize = size;
+                    renderSizes(); 
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        // --- 4. NAVIGATION & VALIDATION ---
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.classList.remove('hidden');
+            toast.classList.add('toast-animate');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('toast-animate');
+            }, 3000);
+        }
+
+        function goToStep(stepId) {
+            document.getElementById('section-product').classList.add('hidden');
+            document.getElementById('section-address').classList.add('hidden');
+            document.getElementById('section-summary').classList.add('hidden');
+            document.getElementById('section-payment').classList.add('hidden');
+            document.getElementById('section-success').classList.add('hidden');
+            
+            document.getElementById(stepId).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleBuyNow() {
+            if (!selectedSize) {
+                showToast('Please select a size first!');
+                // Highlight size section
+                const sizeContainer = document.getElementById('size-container');
+                sizeContainer.classList.add('ring-2', 'ring-red-400', 'ring-offset-4', 'rounded-lg', 'transition-all');
+                setTimeout(() => sizeContainer.classList.remove('ring-2', 'ring-red-400', 'ring-offset-4', 'rounded-lg', 'transition-all'), 1000);
+                return;
+            }
+            goToStep('section-address');
+        }
+
+        function saveAddressAndContinue() {
+            const form = document.getElementById('addressForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            orderDetails = {
+                productName: "Multicolour Trendy Women’s Kurti",
+                size: selectedSize,
+                quantity: document.getElementById('orderQty').value,
+                name: document.getElementById('custName').value,
+                phone1: document.getElementById('custPhone1').value,
+                phone2: document.getElementById('custPhone2').value,
+                address: `${document.getElementById('custHouse').value}, ${document.getElementById('custArea').value}, ${document.getElementById('custLandmark').value}`,
+                city: document.getElementById('custCity').value,
+                state: document.getElementById('custState').value,
+                pincode: document.getElementById('custPin').value,
+                note: document.getElementById('custNote').value
+            };
+
+            const total = parseInt(orderDetails.quantity) * PRODUCT_PRICE;
+            orderDetails.totalPrice = total;
+
+            document.getElementById('summarySize').innerText = orderDetails.size;
+            document.getElementById('summaryQty').innerText = orderDetails.quantity;
+            document.getElementById('calcTotal').innerText = total;
+            document.getElementById('finalTotal').innerText = total;
+            document.getElementById('upiAmountShow').innerText = total;
+            
+            document.getElementById('summaryAddress').innerHTML = `
+                <span class="font-bold text-gray-800">${orderDetails.name}</span><br>
+                ${orderDetails.address}<br>
+                ${orderDetails.city}, ${orderDetails.state} - <span class="font-medium">${orderDetails.pincode}</span><br>
+                <span class="mt-1 inline-block">📞 ${orderDetails.phone1} ${orderDetails.phone2 ? ' / ' + orderDetails.phone2 : ''}</span>
+            `;
+
+            goToStep('section-summary');
+        }
+
+        // --- 5. PAYMENT & SUBMISSION ---
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.toggle('hidden');
+        }
+
+        function processPayment() {
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            orderDetails.paymentMethod = paymentMethod;
+
+            if (paymentMethod === 'UPI') {
+                toggleModal('upiModal');
+            } else {
+                finalizeOrder("COD");
+            }
+        }
+
+        function submitUpiOrder() {
+            const txnId = document.getElementById('upiTxnId').value;
+            if(!txnId || txnId.length < 6) {
+                showToast("Please enter a valid Transaction ID");
+                return;
+            }
+            orderDetails.transactionId = txnId;
+            toggleModal('upiModal');
+            finalizeOrder("UPI");
+        }
+
+        function finalizeOrder(method) {
+            const btn = document.getElementById('placeOrderBtn');
+            btn.innerHTML = 'Processing Order...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75', 'cursor-not-allowed');
+
+            const payload = {
+                type: "ORDER",
+                data: orderDetails
+            };
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: 'no-cors',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                if(method === 'UPI') {
+                    document.getElementById('successMessage').innerText = "Thank you! Once payment is verified, you'll receive the order details on your phone.";
+                } else {
+                    document.getElementById('successMessage').innerText = "Thank you for your order! You will receive confirmation details shortly.";
+                }
+                goToStep('section-success');
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                showToast("Something went wrong! But order might be placed. Check with seller.");
+                goToStep('section-success'); 
+            })
+            .finally(() => {
+                btn.innerHTML = 'Place Order Now';
+                btn.disabled = false;
+                btn.classList.remove('opacity-75', 'cursor-not-allowed');
+            });
+        }
+
+        // --- 6. CONTACT FORM ---
+        function submitContactForm(e) {
+            e.preventDefault();
+            const btn = document.getElementById('contactBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Sending...';
+            btn.disabled = true;
+            
+            const payload = {
+                type: "CONTACT",
+                data: {
+                    name: document.getElementById('contactName').value,
+                    info: document.getElementById('contactInfo').value,
+                    message: document.getElementById('contactMessage').value
+                }
+            };
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: 'no-cors',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            }).then(() => {
+                showToast("Message sent successfully!");
+                document.getElementById('contactForm').reset();
+                toggleModal('contactModal');
+            }).finally(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            });
+        }
+    </script>
+</body>
+</html>
